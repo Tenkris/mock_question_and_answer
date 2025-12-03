@@ -36,29 +36,26 @@ def max_chickens_under_roof(positions: List[int], roof_length: int) -> int:
 
 
 def solve() -> None:
-    data = list(map(int, sys.stdin.buffer.read().split()))
-    if not data:
+    header = sys.stdin.readline().split()
+    if len(header) < 2:
         return
 
-    outputs = []
-    idx = 0
-    total = len(data)
+    n, k = map(int, header[:2])
+    if n <= 0:
+        print(0)
+        return
 
-    while idx + 2 <= total:
-        n = data[idx]
-        k = data[idx + 1]
-        idx += 2
-
-        if n < 0 or idx + n > total:
-            # Invalid or incomplete input; stop processing further.
+    positions: List[int] = []
+    for line in sys.stdin:
+        positions.extend(map(int, line.split()))
+        if len(positions) >= n:
+            positions = positions[:n]
             break
 
-        positions = data[idx : idx + n]
-        idx += n
+    if len(positions) < n:
+        return
 
-        outputs.append(str(max_chickens_under_roof(positions, k)))
-
-    sys.stdout.write("\n".join(outputs))
+    print(max_chickens_under_roof(positions, k))
 
 
 if __name__ == "__main__":

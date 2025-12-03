@@ -43,9 +43,9 @@ def evaluate_day(sequence: str) -> str:
         elif ch == 'R':
             if not seen_shot:
                 return BAD
-            if pending > 0:
+            if pending > 0: # [0 , shots_remaining]
                 pending -= 1
-            elif shots_remaining > 0:
+            elif shots_remaining > 0: # boss baby is shooting too early
                 return BAD
             # else: kids are done; surplus revenge is allowed
         else:
