@@ -18,6 +18,10 @@ def max_chickens_under_roof(positions: List[int], roof_length: int) -> int:
 
     Since positions are sorted, we can slide a window and keep shrinking from the
     left whenever the current window no longer fits inside an interval of size k.
+
+    Time Complexity: O(n) because each index enters and leaves the sliding window
+    at most once.
+    Memory Complexity: O(1) extra space beyond the input list.
     """
 
     if roof_length <= 0:
